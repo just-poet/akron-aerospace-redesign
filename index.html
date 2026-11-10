@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="preload" as="image" href="images/fjord-flight.webp">
   <script src="script.js" defer></script>
   <script src="aircraft.js" defer></script>
+  <script src="hero-flight.js" defer></script>
 </head>
 <body id="top">
   <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="symbols" aria-hidden="true">
@@ -43,13 +43,7 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-image" src="images/fjord-flight.webp" width="1672" height="941" alt="" fetchpriority="high">
       <div class="hero-atmosphere" aria-hidden="true"></div>
-      <div class="hero-instrument" aria-hidden="true">
-        <span class="instrument-orbit"></span>
-        <span class="instrument-sweep"></span>
-        <span class="instrument-center"></span>
-      </div>
       <div class="wrap hero-inner">
         <div class="hero-copy">
           <p class="eyebrow hero-tag"><i></i> Autonomous drone logistics</p>
@@ -60,9 +54,78 @@
             <a class="button text-button" href="#applications">Explore solutions <svg class="icon" aria-hidden="true"><use href="#down"/></svg></a>
           </div>
         </div>
-        <div class="hero-footer">
-          <div class="hero-caption"><span class="crosshair" aria-hidden="true"></span><span>FIG. 01 <b> / </b> FLIGHT CONCEPT</span></div>
-        </div>
+        <figure class="hero-flight" aria-labelledby="island-flight-title" aria-describedby="island-flight-description">
+          <div class="hero-flight-heading"><span id="island-flight-title"><i></i> Island-to-island delivery</span><span>Route 01 / Simulation</span></div>
+          <div class="island-stage">
+            <svg class="island-map" viewBox="0 0 720 425" aria-hidden="true">
+              <defs>
+                <linearGradient id="island-green" x2=".85" y2="1" gradientUnits="objectBoundingBox">
+                  <stop stop-color="#376d60"/><stop offset="1" stop-color="#143b38"/>
+                </linearGradient>
+                <linearGradient id="island-cliff" x2=".1" y2="1" gradientUnits="objectBoundingBox">
+                  <stop stop-color="#244c49"/><stop offset="1" stop-color="#0a212d"/>
+                </linearGradient>
+                <pattern id="ocean-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+                  <path d="M28 0H0V28" fill="none" stroke="#9bd6f2" stroke-opacity=".085"/>
+                </pattern>
+                <radialGradient id="ocean-light">
+                  <stop stop-color="#174d61" stop-opacity=".8"/><stop offset="1" stop-color="#0b2134" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="island-glow">
+                  <stop stop-color="#62eaff" stop-opacity=".28"/><stop offset="1" stop-color="#62eaff" stop-opacity="0"/>
+                </radialGradient>
+                <g id="map-tree">
+                  <path d="M0-12 6 0 0 3-6 0Z" fill="#7ab690"/><path d="M0-12 6 0 0 3Z" fill="#326a55"/>
+                </g>
+                <g id="island-terrain">
+                  <path d="M39 321 63 283 97 272 123 246 163 236 187 248 224 240 249 258 278 267 309 293 303 318 268 342 236 350 204 369 166 364 127 374 95 350 69 352Z" fill="#3bd4e6" opacity=".18" stroke="#57dce8" stroke-width="12" stroke-linejoin="round"/>
+                  <path d="M39 321 63 283 97 272 123 246 163 236 187 248 224 240 249 258 278 267 309 293 303 334 268 357 236 363 204 382 166 379 127 388 95 364 69 366Z" fill="url(#island-cliff)" stroke="#285e66"/>
+                  <path d="M69 352v14l26-2v-14m32 24v14l39-9v-15m38 5v13l32-19v-13m32-8v15l35-23v-16" fill="#44706a" fill-opacity=".38"/>
+                  <path d="M39 321 63 283 97 272 123 246 163 236 187 248 224 240 249 258 278 267 309 293 303 318 268 342 236 350 204 369 166 364 127 374 95 350 69 352Z" fill="url(#island-green)" stroke="#84c2ab" stroke-opacity=".73"/>
+                  <path d="M49 320 71 291 101 281 126 255 164 245 188 256 222 248 244 265 274 275 299 296 294 314 264 334 232 342 203 360 165 354 128 364 97 341 73 343Z" fill="none" stroke="#b4d7a6" stroke-opacity=".32" stroke-dasharray="3 4"/>
+                  <path d="m68 314 45-67 32-24 17 25 19-3 33 34-42 30-44-7-31 17Z" fill="#27594d"/>
+                  <path d="m68 314 45-67 32-24-15 47-33 49Z" fill="#54896a"/>
+                  <path d="m145 223 17 25-32 22Z" fill="#81a77d"/>
+                  <path d="m130 270 32-22 19-3-7 28-46 29-31 17Z" fill="#356f58"/>
+                  <path d="m174 273 7-28 33 34-42 30-44-7Z" fill="#244a42"/>
+                  <path d="m91 303 28-22 7-18m9 39 28-19 11-21m-90 62 19 7 15-5m118 1 26-10 21-15" fill="none" stroke="#b6d3a0" stroke-opacity=".35"/>
+                  <g>
+                    <use href="#map-tree" x="84" y="310"/><use href="#map-tree" x="103" y="322"/><use href="#map-tree" x="119" y="315"/>
+                    <use href="#map-tree" x="112" y="341"/><use href="#map-tree" x="128" y="348"/><use href="#map-tree" x="143" y="335"/>
+                    <use href="#map-tree" x="151" y="350"/><use href="#map-tree" x="226" y="276"/><use href="#map-tree" x="240" y="271"/>
+                    <use href="#map-tree" x="250" y="289"/><use href="#map-tree" x="270" y="293"/><use href="#map-tree" x="278" y="308"/>
+                    <use href="#map-tree" x="233" y="331"/><use href="#map-tree" x="218" y="344"/>
+                  </g>
+                  <path d="m167 315 27-18 34 11-1 9-31 20-29-11Z" fill="#0d2631"/>
+                  <path d="m167 315 27-18 34 11-31 21Z" fill="#214752" stroke="#93d5de" stroke-width="1.4"/>
+                  <ellipse cx="197" cy="313" rx="14" ry="7" fill="none" stroke="#a6f7ff" transform="rotate(-12 197 313)"/>
+                  <path d="m191 312 7 3m-2-6 7 3m-10 2 5-3" stroke="#a6f7ff" stroke-width="1.2" fill="none"/>
+                  <path d="m255 295 15-10 17 6-16 10-16-6v-12l15-9 17 5v12m-16-2v12m-16-18 16 6 16-10" fill="#527485" stroke="#a8bac0" stroke-width=".65"/>
+                  <path d="m260 289 5 2m11 1 7-4" stroke="#ffce8c" stroke-width="2"/>
+                </g>
+              </defs>
+              <ellipse cx="365" cy="265" rx="360" ry="158" fill="url(#ocean-light)"/>
+              <path d="M0 44h720v381H0z" fill="url(#ocean-grid)"/>
+              <path d="M18 348c53 71 220 65 311 23M48 365c58 53 202 61 277 19m68-117c15 69 170 88 290 39m-269-20c48 57 177 66 243 38M272 203c36-24 93-36 124-31m-109 37c33-17 64-26 107-29m-17 145c24 12 44 16 79 17" stroke="#64b7c8" stroke-opacity=".23" fill="none" stroke-dasharray="4 8"/>
+              <use href="#island-terrain" transform="translate(388 -31) scale(.88)"/>
+              <use href="#island-terrain"/>
+              <ellipse cx="198" cy="310" rx="54" ry="32" fill="url(#island-glow)"/>
+              <ellipse cx="562" cy="242" rx="54" ry="32" fill="url(#island-glow)"/>
+              <path id="island-flight-path" d="M198 300C224 177 298 111 378 121S530 145 562 231" pathLength="1" fill="none" stroke="#76c9df" stroke-width="1.5" stroke-dasharray=".011 .012" stroke-opacity=".67"/>
+              <path class="island-flight-trail" pathLength="1" fill="none" stroke="#a2f5ff" stroke-width="2" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/>
+              <g fill="none" stroke="#91dbe7" stroke-opacity=".7">
+                <path d="M140 348v42h-18M602 274v43h15"/><circle cx="140" cy="348" r="3"/><circle cx="602" cy="274" r="3"/>
+              </g>
+              <text x="45" y="394" class="island-map-label">A / DISPATCH</text>
+              <text x="678" y="321" text-anchor="end" class="island-map-label">B / RECEIVE</text>
+            </svg>
+            <canvas class="hero-aircraft" aria-hidden="true" hidden></canvas>
+          </div>
+          <figcaption class="hero-flight-footer" id="island-flight-description">
+            <span>Illustrative crossing</span>
+            <button type="button" class="flight-replay" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 1 1 2 8M3 4v6h6"/></svg>Replay flight</button>
+          </figcaption>
+        </figure>
       </div>
     </section>
 

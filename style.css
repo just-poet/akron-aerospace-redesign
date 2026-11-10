@@ -37,13 +37,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .navigation .header-contact { display: inline-flex; align-items: center; gap: 12px; padding: 8px 13px; border: 1px solid #456774; color: var(--signal); }
 .navigation .header-contact:hover { border-color: var(--signal); }
 .menu-toggle { display: none; }
-.hero { position: relative; isolation: isolate; overflow: hidden; background: #0d1823; }
-.hero-image { position: absolute; z-index: -3; inset: 0 0 0 auto; width: 83%; height: 100%; object-fit: cover; object-position: 63% 52%; }
-.hero::before { position: absolute; z-index: -2; inset: 0; content: ""; background: linear-gradient(90deg,#050b14 4%,#050b14f5 23%,#050b14c7 40%,#050b1438 65%,transparent 85%), linear-gradient(0deg,#050b14d9,transparent 38%); }
-.hero::after { position: absolute; inset: 0; z-index: -1; content: ""; background: repeating-linear-gradient(90deg, transparent 0 calc(100% / 12 - 1px), #a6ceec13 calc(100% / 12 - 1px) calc(100% / 12)); mask-image: linear-gradient(#000,transparent 42%,transparent 72%,#000); }
-.hero-inner { position: relative; display: flex; align-items: center; min-height: clamp(570px, 46vw, 760px); padding-block: 80px 100px; }
+.hero { position: relative; isolation: isolate; overflow: hidden; }
+
+.hero::before { position: absolute; z-index: -2; inset: 0; content: ""; }
+.hero::after { position: absolute; inset: 0; z-index: -1; content: ""; }
+.hero-inner { position: relative; align-items: center; }
 .hero-copy { max-width: 770px; }
-.eyebrow, .section-id, .brief dt, .hero-caption, .photo-frame span, .route-note, .specs dt, figcaption span { font: 500 11px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .13em; }
+.eyebrow, .section-id, .brief dt, .photo-frame span, .route-note, .specs dt, figcaption span { font: 500 11px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .13em; }
 .hero-tag { color: var(--signal); display: inline-flex; align-items: center; gap: 11px; padding: 8px 11px; background: #18231d; border: 1px solid #478091; }
 i { display: inline-block; width: 6px; height: 6px; background: var(--signal); border-radius: 50%; flex: none; }
 h1, h2, h3 { font-family: var(--display); font-weight: 600; }
@@ -56,9 +56,7 @@ h1 em, h2 em { font-style: normal; color: var(--signal); }
 .primary:hover { background: #d7fbff; border-color: #d7fbff; }
 .text-button { color: var(--white); border-color: #758394; background: #10192585; }
 .text-button:hover { color: var(--signal); border-color: var(--signal); }
-.hero-caption { display: flex; align-items: center; gap: 11px; position: absolute; right: 0; bottom: 27px; color: #e1ecf4; }
-.hero-caption b { margin-inline: 5px; color: var(--signal); }
-.crosshair { width: 17px; height: 17px; background: linear-gradient(var(--signal),var(--signal)) center/1px 100% no-repeat,linear-gradient(var(--signal),var(--signal)) center/100% 1px no-repeat; }
+
 .brief { background: #101b27; border-block: 1px solid var(--edge); }
 .brief-grid { display: grid; grid-template-columns: repeat(4,1fr); }
 .brief-grid div { padding: 20px 23px; border-right: 1px solid var(--edge); }
@@ -131,11 +129,9 @@ figcaption span { color: var(--signal); margin-right: 10px; }
   .enhanced .navigation.is-open { display: flex; }
   .enhanced .navigation a { padding: 11px 3px; }
   .enhanced .navigation .header-contact { padding: 10px 12px; align-self: start; }
-  .hero-inner { min-height: 570px; align-items: end; padding-block: 180px 72px; }
-  .hero-image { width: 100%; height: 86%; object-position: 59% top; }
-  .hero::before { background: linear-gradient(0deg,#050b14 3%,#050b14f5 28%,#050b147d 59%,#050b1400 86%),linear-gradient(90deg,#050b1450,transparent); }
+
   h1 { font-size: clamp(52px,10vw,82px); }
-  .hero-caption { font-size: 9px; bottom: 19px; }
+
   .brief-grid { grid-template-columns: repeat(2,1fr); }
   .brief-grid div { padding: 13px 13px 13px 0; }
   .brief-grid div:nth-child(even) { padding-left: 13px; border-right: 0; }
@@ -163,26 +159,12 @@ figcaption span { color: var(--signal); margin-right: 10px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
-/* The flight instruments sit above the photography and below the content. */
-.hero {
-  background: #070f1b;
-}
-.hero-image {
-  width: 100%;
-  object-position: 62% 48%;
-}
-.hero::before {
-  background:
-    linear-gradient(90deg, #050b14f5 1%, #050b14dc 24%, #050b1470 50%, transparent 74%),
-    linear-gradient(0deg, #050b14 1%, #050b1460 25%, transparent 55%);
-}
 .hero::after {
   background:
     repeating-linear-gradient(90deg, transparent 0 calc(100% / 12 - 1px), #8dddf024 calc(100% / 12 - 1px) calc(100% / 12)),
     repeating-linear-gradient(0deg, transparent 0 74px, #8dddf010 74px 75px);
   mask-image: linear-gradient(#000 1%, transparent 42%, transparent 66%, #000);
 }
-.hero-inner { min-height: clamp(620px, 48vw, 810px); }
 .hero-copy { position: relative; }
 .hero-tag {
   color: #b7fbff;
@@ -204,47 +186,7 @@ figcaption span { color: var(--signal); margin-right: 10px; }
     linear-gradient(105deg, transparent 40%, #90ddff26 52%, transparent 64%);
   opacity: .36;
 }
-.hero-instrument {
-  position: absolute;
-  z-index: -1;
-  top: 48%;
-  left: 72%;
-  width: min(37vw, 595px);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  color: #a0efff;
-  pointer-events: none;
-}
-.instrument-orbit, .instrument-sweep, .instrument-center { position: absolute; border-radius: 50%; }
-.instrument-orbit {
-  inset: 0;
-  border: 1px solid #93efff4a;
-  outline: 1px dashed #93efff44;
-  outline-offset: 10px;
-  box-shadow: inset 0 0 50px #32caff0c;
-}
-.instrument-orbit::before {
-  content: "";
-  position: absolute;
-  inset: 14%;
-  border: 1px solid #93efff31;
-  border-radius: inherit;
-}
-.instrument-sweep {
-  inset: 0;
-  background: conic-gradient(from 12deg, #94eaff35 0deg, transparent 65deg);
-  mask-image: radial-gradient(transparent 56%, #000 72%);
-}
-.instrument-center { inset: 8%; border: 1px solid transparent; border-top-color: #b3f4ff9c; transform: rotate(24deg); }
-.hero-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  position: absolute;
-  inset: auto 0 23px;
-}
-.hero-caption { position: static; margin-left: auto; }
+
 .brief { background: linear-gradient(100deg, #08121d, #102437 75%, #0a1623); }
 .brief-grid div { position: relative; }
 .brief-grid div:last-child::before {
@@ -300,38 +242,26 @@ figcaption span { color: var(--signal); margin-right: 10px; }
     repeating-linear-gradient(90deg, transparent 0 47px, #79cff01a 47px 48px), #0b1826;
 }
 .motion-ready .hero-atmosphere { animation: atmospheric-drift 12s ease-in-out infinite alternate; }
-.motion-ready .instrument-sweep { animation: rotate-sweep 19s linear infinite; }
 .motion-ready .hero-copy, .entered { animation: enter-view .66s cubic-bezier(.22,.75,.28,1) both; }
 .motion-ready .route svg.is-playing .route-trail { animation: travel-dashes 1.25s linear infinite; }
-.motion-off .hero-atmosphere, .motion-off .instrument-sweep, .motion-off .hero-copy, .motion-off .entered { animation: none; }
+.motion-off .hero-atmosphere, .motion-off .hero-copy, .motion-off .entered { animation: none; }
 @keyframes atmospheric-drift {
   from { opacity: .28; transform: translateX(-4%); }
   to { opacity: .76; transform: translateX(5%); }
 }
-@keyframes rotate-sweep { to { transform: rotate(360deg); } }
 @keyframes enter-view {
   from { opacity: .72; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
 @keyframes travel-dashes { to { stroke-dashoffset: -24; } }
 
-@media (max-width: 780px) {
-  .hero-inner { min-height: 630px; padding-block: 250px 82px; }
-  .hero-image { height: min(79%, 565px); object-position: 72% 50%; }
-  .hero::before { background: linear-gradient(0deg, #050b14 3%, #050b14fa 29%, #050b14b0 49%, #050b141a 73%, transparent 96%); }
-  .hero-instrument { top: 25%; left: 64%; width: clamp(155px, 46vw, 280px); }
-  .hero-footer { bottom: 18px; }
-  .hero-caption { letter-spacing: .08em; gap: 5px; }
-}
 @media (max-width: 520px) {
-  .hero-inner { min-height: 0; padding-block: 205px 68px; }
-  .hero-image { height: 79%; object-position: 70% top; }
+
   .hero h1 { font-size: clamp(36px, 10.4vw, 52px); letter-spacing: -.069em; }
   .hero-description { max-width: 340px; }
   .hero-actions { gap: 8px; }
   .hero-actions .button { padding-inline: 10px; min-height: 45px; gap: 9px; font-size: 12px; }
-  .hero-caption { font-size: 8px; }
-  .hero-caption .crosshair { display: none; }
+
 }
 /* Commercial and medical share the flight system, with distinct payload accents. */
 .navigation { gap: clamp(15px, 2.6vw, 38px); }
@@ -448,3 +378,91 @@ figcaption span { color: var(--signal); margin-right: 10px; }
   .aircraft-label { letter-spacing: .06em; }
 }
 .aircraft-stage:not(.has-model) .aircraft-3d-tag { display: none; }
+
+/* The opening route shares the platform viewer's aircraft geometry. */
+.hero {
+  background:
+    radial-gradient(ellipse at 79% 50%, #142e42, transparent 57%),
+    linear-gradient(118deg, #050b14 12%, #0b1928 74%, #06101a);
+}
+.hero::before {
+  background: linear-gradient(0deg, #050b14bc, transparent 32%);
+}
+.hero-atmosphere {
+  background: radial-gradient(ellipse at 71% 47%, #25bde42a, transparent 47%);
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(22px, 3.2vw, 50px);
+  min-height: clamp(570px, 46vw, 760px);
+  padding-block: clamp(45px, 5.9vw, 91px);
+}
+.hero h1 { font-size: clamp(46px, 6vw, 96px); }
+.hero-description { max-width: 415px; }
+.hero-flight {
+  min-width: 0;
+  position: relative;
+  border: 1px solid #6ab4cd54;
+  box-shadow: 0 24px 65px #02070d7d, inset 0 0 50px #40b9f315;
+  background: #091928b5;
+}
+.hero-flight::after {
+  position: absolute;
+  content: "";
+  inset: -1px -1px auto auto;
+  width: 22px;
+  height: 22px;
+  border-top: 2px solid var(--signal);
+  border-right: 2px solid var(--signal);
+  pointer-events: none;
+}
+.hero-flight-heading, .hero-flight-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-inline: clamp(11px, 1.4vw, 20px);
+  color: #b4c9d9;
+  background: #081421;
+  font: 500 10px/1.4 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .09em;
+}
+.hero-flight-heading { min-height: 41px; border-bottom: 1px solid #45748650; }
+.hero-flight-heading > span:first-child { display: inline-flex; align-items: center; gap: 7px; color: var(--signal); }
+.hero-flight-heading i { box-shadow: 0 0 10px #70e9ff; }
+.hero-flight-footer { min-height: 47px; border-top: 1px solid #45748650; }
+.island-stage { position: relative; aspect-ratio: 720 / 425; }
+.island-map, .hero-aircraft { display: block; width: 100%; height: 100%; }
+.hero-aircraft { position: absolute; inset: 0; pointer-events: none; }
+.hero-aircraft[hidden], .flight-replay[hidden] { display: none; }
+.island-map-label { fill: #c1f8ff; font: 600 15px var(--mono); letter-spacing: 1.15px; }
+.flight-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #4a7185;
+  background: #102231;
+  color: var(--signal);
+  padding: 5px 9px;
+  min-height: 31px;
+  font: inherit;
+  cursor: pointer;
+}
+.flight-replay:hover { border-color: var(--signal); }
+@media (max-width: 980px) {
+  .hero h1 { font-size: clamp(40px, 5.7vw, 65px); }
+}
+@media (max-width: 780px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr); min-height: 0; gap: 24px; padding-block: 24px 37px; }
+  .hero-flight { grid-row: 1; }
+  .hero h1 { font-size: clamp(41px, 8.4vw, 68px); }
+  .hero-description { margin-top: 16px; }
+  .hero-actions { margin-top: 21px; }
+}
+@media (max-width: 420px) {
+  .hero-flight-heading, .hero-flight-footer { font-size: 9px; letter-spacing: .025em; }
+  .hero-flight-heading { min-height: 34px; }
+  .hero-flight-footer { min-height: 42px; }
+}

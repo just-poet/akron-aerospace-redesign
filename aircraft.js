@@ -1,15 +1,4 @@
-(() => {
-  const stage = document.querySelector(".aircraft-stage");
-  const canvas = stage.querySelector("canvas");
-  const context = canvas.getContext("2d");
-  if (!context) return;
-
-  const controls = stage.querySelector(".aircraft-controls");
-  const selector = document.querySelector(".loadout-selector");
-  const choices = [...selector.querySelectorAll("button")];
-  const panels = [...document.querySelectorAll("[data-loadout-copy]")];
-  const startYaw = -0.58;
-  const startPitch = 0.53;
+function createAircraftMesh(loadout) {
   const paint = {
     shell: [182, 212, 226],
     carbon: [45, 66, 81],
@@ -20,17 +9,7 @@
     medical: [189, 222, 229],
     cross: [225, 78, 86],
   };
-
-  let faces = [];
-  let width = 0;
-  let height = 0;
-  let yaw = startYaw;
-  let pitch = startPitch;
-  let visible = false;
-  let manual = false;
-  let frame = 0;
-  let previousTime = 0;
-  let drag;
+  const faces = [];
 
   function addFace(points, color) {
     const [a, b, c] = points;
@@ -87,62 +66,109 @@
     loft([ring(-h / 2), ring(h / 2)], color);
   }
 
-  function buildModel(loadout) {
-    faces = [];
-    box(0, 0.13, 0, 1.18, 0.4, 1.62, paint.shell, 0, 0.19);
-    box(0, 0.39, -0.11, 0.68, 0.14, 0.85, paint.motor, 0, 0.1);
-    box(0, -0.13, 0, 0.83, 0.18, 1.21, paint.carbon, 0, 0.11);
-    box(0, 0.09, 0.815, 0.58, 0.07, 0.04, paint.carbon);
-    box(0, 0.09, 0.839, 0.35, 0.027, 0.017, paint.light);
-    for (const side of [-1, 1]) {
-      box(side * 0.46, -0.56, 0, 0.1, 0.78, 0.1, paint.carbon);
-      box(side * 0.59, -0.96, 0, 0.105, 0.085, 1.32, paint.motor);
-      box(side * 0.525, -0.86, 0.39, 0.21, 0.11, 0.09, paint.motor);
-      box(side * 0.525, -0.86, -0.39, 0.21, 0.11, 0.09, paint.motor);
-      for (const end of [-1, 1]) {
-        const x = side * 1.39;
-        const z = end * 0.91;
-        const dx = x - side * 0.37;
-        const dz = z - end * 0.27;
-        box(side * 0.37 + dx / 2, 0.12, end * 0.27 + dz / 2, Math.hypot(dx, dz), 0.12, 0.16, paint.carbon, Math.atan2(dz, dx));
-        cylinder(x, 0.23, z, 0.18, 0.21, paint.motor);
-        cylinder(x, 0.35, z, 0.185, 0.025, end === 1 ? paint.light : paint.amber);
-        box(x, 0.405, z, 0.94, 0.039, 0.085, paint.carbon, side * end * 0.52);
-        cylinder(x, 0.442, z, 0.085, 0.06, paint.shell);
-      }
-    }
-    const medical = loadout === "medical";
-    box(0, -0.51, 0.035, 0.85, 0.64, 1.04, medical ? paint.medical : paint.cargo, 0, 0.10);
-    box(0, -0.34, 0.035, 0.867, 0.038, 1.057, paint.carbon);
-    for (const side of [-1, 1]) {
-      box(side * 0.27, -0.35, 0.575, 0.094, 0.12, 0.04, medical ? paint.motor : paint.amber);
-      box(side * 0.425, -0.62, 0.035, 0.038, 0.09, 0.81, paint.motor);
-    }
-    if (medical) {
-      box(0, -0.56, 0.567, 0.25, 0.063, 0.018, paint.cross);
-      box(0, -0.56, 0.572, 0.063, 0.22, 0.018, paint.cross);
-    } else {
-      box(0, -0.57, 0.567, 0.29, 0.085, 0.018, paint.amber);
+  box(0, 0.13, 0, 1.18, 0.4, 1.62, paint.shell, 0, 0.19);
+  box(0, 0.39, -0.11, 0.68, 0.14, 0.85, paint.motor, 0, 0.1);
+  box(0, -0.13, 0, 0.83, 0.18, 1.21, paint.carbon, 0, 0.11);
+  box(0, 0.09, 0.815, 0.58, 0.07, 0.04, paint.carbon);
+  box(0, 0.09, 0.839, 0.35, 0.027, 0.017, paint.light);
+  for (const side of [-1, 1]) {
+    box(side * 0.46, -0.56, 0, 0.1, 0.78, 0.1, paint.carbon);
+    box(side * 0.59, -0.96, 0, 0.105, 0.085, 1.32, paint.motor);
+    box(side * 0.525, -0.86, 0.39, 0.21, 0.11, 0.09, paint.motor);
+    box(side * 0.525, -0.86, -0.39, 0.21, 0.11, 0.09, paint.motor);
+    for (const end of [-1, 1]) {
+      const x = side * 1.39;
+      const z = end * 0.91;
+      const dx = x - side * 0.37;
+      const dz = z - end * 0.27;
+      box(side * 0.37 + dx / 2, 0.12, end * 0.27 + dz / 2, Math.hypot(dx, dz), 0.12, 0.16, paint.carbon, Math.atan2(dz, dx));
+      cylinder(x, 0.23, z, 0.18, 0.21, paint.motor);
+      cylinder(x, 0.35, z, 0.185, 0.025, end === 1 ? paint.light : paint.amber);
+      box(x, 0.405, z, 0.94, 0.039, 0.085, paint.carbon, side * end * 0.52);
+      cylinder(x, 0.442, z, 0.085, 0.06, paint.shell);
     }
   }
+  const medical = loadout === "medical";
+  box(0, -0.51, 0.035, 0.85, 0.64, 1.04, medical ? paint.medical : paint.cargo, 0, 0.10);
+  box(0, -0.34, 0.035, 0.867, 0.038, 1.057, paint.carbon);
+  for (const side of [-1, 1]) {
+    box(side * 0.27, -0.35, 0.575, 0.094, 0.12, 0.04, medical ? paint.motor : paint.amber);
+    box(side * 0.425, -0.62, 0.035, 0.038, 0.09, 0.81, paint.motor);
+  }
+  if (medical) {
+    box(0, -0.56, 0.567, 0.25, 0.063, 0.018, paint.cross);
+    box(0, -0.56, 0.572, 0.063, 0.22, 0.018, paint.cross);
+  } else {
+    box(0, -0.57, 0.567, 0.29, 0.085, 0.018, paint.amber);
+  }
+  return faces;
+}
+
+function createAircraftProjection(x, yCenter, scale, yaw, pitch) {
+  const cosine = Math.cos(yaw);
+  const sine = Math.sin(yaw);
+  const tilt = Math.cos(pitch);
+  const lift = Math.sin(pitch);
+
+  return function project([modelX, y, z]) {
+    const side = modelX * cosine + z * sine;
+    const depth = z * cosine - modelX * sine;
+    return [
+      x + side * scale,
+      yCenter - (y * tilt - depth * lift) * scale,
+      depth * tilt + y * lift,
+    ];
+  };
+}
+
+function drawAircraftMesh(context, faces, project) {
+  const projected = faces.map(({ points, fill }) => {
+    const polygon = points.map(project);
+    const depth = polygon.reduce((total, point) => total + point[2], 0) / polygon.length;
+    return { polygon, depth, fill };
+  });
+  projected.sort((a, b) => a.depth - b.depth);
+  context.lineWidth = 0.7;
+  context.strokeStyle = "#04132094";
+  for (const { polygon, fill } of projected) {
+    context.beginPath();
+    context.moveTo(polygon[0][0], polygon[0][1]);
+    for (const [x, y] of polygon.slice(1)) context.lineTo(x, y);
+    context.closePath();
+    context.fillStyle = fill;
+    context.fill();
+    context.stroke();
+  }
+}
+
+(() => {
+  const stage = document.querySelector(".aircraft-stage");
+  const canvas = stage.querySelector("canvas");
+  const context = canvas.getContext("2d");
+  if (!context) return;
+
+  const controls = stage.querySelector(".aircraft-controls");
+  const selector = document.querySelector(".loadout-selector");
+  const choices = [...selector.querySelectorAll("button")];
+  const panels = [...document.querySelectorAll("[data-loadout-copy]")];
+  const startYaw = -0.58;
+  const startPitch = 0.53;
+
+  let faces = [];
+  let width = 0;
+  let height = 0;
+  let yaw = startYaw;
+  let pitch = startPitch;
+  let visible = false;
+  let manual = false;
+  let frame = 0;
+  let previousTime = 0;
+  let drag;
 
   function draw() {
     if (!width || !height) return;
     const scale = Math.min(width / 4.85, height / 3.8);
-    const cosine = Math.cos(yaw);
-    const sine = Math.sin(yaw);
-    const tilt = Math.cos(pitch);
-    const lift = Math.sin(pitch);
-
-    function project([x, y, z]) {
-      const side = x * cosine + z * sine;
-      const depth = z * cosine - x * sine;
-      return [
-        width / 2 + side * scale,
-        height * 0.46 - (y * tilt - depth * lift) * scale,
-        depth * tilt + y * lift,
-      ];
-    }
+    const project = createAircraftProjection(width / 2, height * 0.46, scale, yaw, pitch);
 
     context.clearRect(0, 0, width, height);
     context.lineWidth = 1;
@@ -161,23 +187,7 @@
     }
     context.stroke();
 
-    const projected = faces.map(({ points, fill }) => {
-      const polygon = points.map(project);
-      const depth = polygon.reduce((total, point) => total + point[2], 0) / polygon.length;
-      return { polygon, depth, fill };
-    });
-    projected.sort((a, b) => a.depth - b.depth);
-    context.lineWidth = 0.7;
-    context.strokeStyle = "#04132094";
-    for (const { polygon, fill } of projected) {
-      context.beginPath();
-      context.moveTo(polygon[0][0], polygon[0][1]);
-      for (const [x, y] of polygon.slice(1)) context.lineTo(x, y);
-      context.closePath();
-      context.fillStyle = fill;
-      context.fill();
-      context.stroke();
-    }
+    drawAircraftMesh(context, faces, project);
   }
 
   function fit() {
@@ -213,7 +223,7 @@
     for (const choice of choices) choice.setAttribute("aria-pressed", String(choice.dataset.loadout === loadout));
     for (const panel of panels) panel.hidden = panel.dataset.loadoutCopy !== loadout;
     stage.dataset.configuration = loadout;
-    buildModel(loadout);
+    faces = createAircraftMesh(loadout);
     draw();
   }
 
