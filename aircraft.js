@@ -1,14 +1,4 @@
-function createAircraftMesh(loadout) {
-  const paint = {
-    shell: [182, 212, 226],
-    carbon: [45, 66, 81],
-    motor: [75, 109, 127],
-    light: [116, 239, 255],
-    cargo: [71, 105, 123],
-    amber: [252, 189, 111],
-    medical: [189, 222, 229],
-    cross: [225, 78, 86],
-  };
+function createMeshBuilder() {
   const faces = [];
 
   function addFace(points, color) {
@@ -65,6 +55,22 @@ function createAircraftMesh(loadout) {
     });
     loft([ring(-h / 2), ring(h / 2)], color);
   }
+
+  return { faces, box, cylinder, loft };
+}
+
+function createAircraftMesh(loadout) {
+  const paint = {
+    shell: [182, 212, 226],
+    carbon: [45, 66, 81],
+    motor: [75, 109, 127],
+    light: [116, 239, 255],
+    cargo: [71, 105, 123],
+    amber: [252, 189, 111],
+    medical: [189, 222, 229],
+    cross: [225, 78, 86],
+  };
+  const { faces, box, cylinder } = createMeshBuilder();
 
   box(0, 0.13, 0, 1.18, 0.4, 1.62, paint.shell, 0, 0.19);
   box(0, 0.39, -0.11, 0.68, 0.14, 0.85, paint.motor, 0, 0.1);
