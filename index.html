@@ -9,36 +9,26 @@
   <link rel="icon" type="image/svg+xml" href="images/akron.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="preload" as="image" href="images/fjord-flight.webp">
   <script src="script.js" defer></script>
   <script src="aircraft.js" defer></script>
   <script src="island-flight.js" defer></script>
+  <script src="uk-map.js" defer></script>
 </head>
 <body id="top">
   <div class="site-atmosphere" aria-hidden="true">
     <div class="ambient-glow"></div>
     <div class="ambient-grid"></div>
-    <svg class="ambient-orbits" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false">
-      <defs>
-        <linearGradient id="ambient-signal" x1="0" y1="1" x2="1" y2="0">
-          <stop stop-color="#2e8eab" stop-opacity=".08"/><stop offset=".53" stop-color="#79e5f5" stop-opacity=".8"/><stop offset="1" stop-color="#727aff" stop-opacity=".18"/>
-        </linearGradient>
-      </defs>
-      <g class="ambient-lines" fill="none" stroke="url(#ambient-signal)">
-        <path d="M-180 868C180 876 376 754 575 568S1056 176 1597 189"/>
-        <path d="M-165 902C232 915 416 770 631 584S1114 222 1580 239"/>
-        <path d="M-170 933C264 938 464 789 676 607S1149 258 1597 280"/>
-        <path d="M-137 727C272 838 470 720 603 626S1023 319 1517 343"/>
-        <path d="M-92 175C220 102 555 97 766 237S1067 553 1511 579"/>
-      </g>
-      <g class="ambient-signals" fill="none" stroke="#98f1ff">
-        <path pathLength="1" d="M-180 868C180 876 376 754 575 568S1056 176 1597 189"/>
-        <path pathLength="1" d="M-170 933C264 938 464 789 676 607S1149 258 1597 280"/>
-        <path pathLength="1" d="M-92 175C220 102 555 97 766 237S1067 553 1511 579"/>
-      </g>
-    </svg>
+<svg class="uk-map" viewBox="0 0 600 800" aria-hidden="true"><defs>
+<linearGradient id="uk-fill" x2="1" y2="1"><stop stop-color="#456363"/><stop offset="1" stop-color="#162e3b"/></linearGradient>
+<g id="uk-drone-shape" fill="#efd3b2" stroke="#13232c" stroke-width="1.4"><path d="m-12-9 24 18m0-18-24 18" fill="none" stroke="#efd3b2" stroke-width="3"/><rect x="-5" y="-7" width="10" height="14" rx="3"/><circle cx="-12" cy="-9" r="5"/><circle cx="12" cy="9" r="5"/><circle cx="12" cy="-9" r="5"/><circle cx="-12" cy="9" r="5"/></g></defs>
+<path d="M115.1,416.8L77.3,401.5L46.4,402.6L56.7,362.9L46.4,323.3L88.3,320.2L141.9,366.0L115.1,416.8Z M270.3,451.1L270.4,451.1L277.7,408.1L244.3,362.5L243.5,361.5L182.8,348.5L170.9,328.4L189.0,295.4L172.6,275.0L145.7,310.0L142.8,238.6L117.5,200.9L135.7,124.4L174.5,64.4L214.4,70.2L274.7,64.0L221.3,144.1L272.2,133.9L327.0,134.3L314.0,194.6L269.0,260.9L320.7,265.7L324.7,273.4L369.3,360.8L403.5,372.6L434.2,456.9L448.5,486.2L509.1,500.3L503.0,547.6L477.5,569.3L497.5,607.6L452.5,646.3L385.6,645.7L300.5,666.0L277.2,651.4L244.1,686.1L197.9,677.7L162.7,706.0L136.2,691.2L209.5,613.5L254.3,597.5L253.9,597.4L175.8,585.1L161.6,555.6L213.9,532.7L186.5,492.8L196.0,444.4L270.3,451.1Z" fill="url(#uk-fill)" stroke="#a9b8a5" stroke-opacity=".7" stroke-width="1.2"/>
+<g fill="none" stroke="#d2a574" stroke-width="1.5" stroke-dasharray="4 6"><path id="uk-north" d="M418.6 591.5Q230 515 312.9 445.4T265.6 262.5"/><path id="uk-west" d="M418.6 591.5Q341 646 266 593.4"/></g>
+<g fill="#e9c8a5" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1"><circle cx="418.62000000000006" cy="591.4672000000002" r="4"/><text x="432.62000000000006" y="595.4672000000002">LONDON</text><circle cx="312.87" cy="445.4207999999999" r="4"/><text x="326.87" y="449.4207999999999">MANCHESTER</text><circle cx="265.585" cy="262.45580000000007" r="4"/><text x="279.585" y="266.45580000000007">EDINBURGH</text><circle cx="266.045" cy="593.3616" r="4"/><text x="280.045" y="597.3616">CARDIFF</text></g>
+<g class="uk-drone"><use href="#uk-drone-shape"/><animateMotion dur="14s" repeatCount="indefinite" begin="indefinite" rotate="auto"><mpath href="#uk-north"/></animateMotion></g>
+<g class="uk-drone"><use href="#uk-drone-shape"/><animateMotion dur="10s" repeatCount="indefinite" begin="indefinite" rotate="auto"><mpath href="#uk-west"/></animateMotion></g></svg>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="symbols" aria-hidden="true">
     <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
@@ -67,19 +57,19 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-image" src="images/fjord-flight.webp" width="1672" height="941" alt="" fetchpriority="high">
+
       <div class="hero-atmosphere" aria-hidden="true"></div>
       <div class="wrap hero-inner">
         <div class="hero-copy">
           <p class="eyebrow hero-tag"><i></i> Autonomous drone logistics</p>
-          <h1 id="hero-title">Critical cargo.<br><em>Direct flight.</em></h1>
+          <h1 id="hero-title">A better way<br>to <em>deliver.</em></h1>
           <p class="hero-description">Akron Aerospace is developing autonomous drones to move urgent commercial cargo and medical supplies between the places that need them.</p>
           <div class="hero-actions">
             <a class="button primary" href="#platform">Explore the platform <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
             <a class="button text-button" href="#applications">Explore solutions <svg class="icon" aria-hidden="true"><use href="#down"/></svg></a>
           </div>
         </div>
-        <a class="hero-mission-link" href="#problem"><span>01 / Mission simulation</span><span>Watch an island crossing <svg class="icon" aria-hidden="true"><use href="#down"/></svg></span></a>
+        <a class="hero-mission-link" href="#problem"><span>UK / Illustrative flight network</span><span>Watch an island crossing <svg class="icon" aria-hidden="true"><use href="#down"/></svg></span></a>
       </div>
     </section>
 
