@@ -42,29 +42,27 @@ function createLogisticsMesh(model) {
       break;
     }
 
-    case "trolley": {
-      box(0, -0.46, 0, 1.48, 0.19, 2.24, slate, 0, 0.16);
-      box(0, -0.36, 0.09, 1.28, 0.08, 1.86, dark, 0, 0.10);
-      box(0, -0.07, 0.15, 1.04, 0.52, 1.18, copper, 0, 0.08);
-      for (const x of [-0.28, 0.28]) {
-        box(x, 0.20, 0.15, 0.09, 0.035, 1.17, slate);
-        box(x, -0.09, 0.75, 0.09, 0.52, 0.025, slate);
-      }
-      box(0, 0.03, 0.77, 0.24, 0.13, 0.025, ivory);
+    case "propulsion": {
+      box(0, -0.77, -0.41, 0.67, 0.21, 1.77, dark, 0, 0.14);
+      cylinder(0, -0.68, 0, 0.43, 0.16, slate);
+      box(0, -0.65, -0.96, 0.35, 0.08, 0.19, mint, 0, 0.03);
+      cylinder(0, -0.22, 0, 0.38, 0.48, slate);
+      cylinder(0, -0.43, 0, 0.40, 0.08, dark);
+      cylinder(0, 0.02, 0, 0.40, 0.09, copper);
+      cylinder(0, 0.12, 0, 0.14, 0.16, ivory);
+
+      const bladeOutline = [
+        [0.14, -0.08], [0.21, 0.14], [0.64, 0.26], [1.17, 0.19],
+        [1.53, 0.03], [1.56, -0.08], [1.41, -0.15], [0.78, -0.11],
+      ];
       for (const side of [-1, 1]) {
-        box(side * 0.54, 0.10, -0.89, 0.09, 1.05, 0.09, slate);
-        box(side * 0.56, -0.44, 1.11, 0.23, 0.07, 0.035, mint);
-        for (const z of [-0.73, 0.76]) {
-          const wheelRing = (x, radius) => Array.from({ length: 16 }, (_, index) => {
-            const angle = index * Math.PI / 8;
-            return [x, -0.70 + Math.cos(angle) * radius, z + Math.sin(angle) * radius];
-          });
-          loft([wheelRing(side * 0.59, 0.22), wheelRing(side * 0.77, 0.22)], dark);
-          loft([wheelRing(side * 0.77, 0.11), wheelRing(side * 0.79, 0.11)], ivory);
-        }
+        const blade = (height) => bladeOutline.map(([x, z]) => [
+          side * x, height - 0.07 * x, side * z,
+        ]);
+        loft([blade(0.59), blade(0.68)], ivory);
       }
-      box(0, 0.62, -0.89, 1.17, 0.12, 0.12, slate, 0, 0.035);
-      box(0, 0.63, -0.89, 0.65, 0.13, 0.13, mint, 0, 0.04);
+      cylinder(0, 0.62, 0, 0.23, 0.16, dark);
+      cylinder(0, 0.73, 0, 0.11, 0.075, copper);
       break;
     }
   }
