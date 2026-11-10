@@ -11,11 +11,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="images/fjord-flight.webp">
   <script src="script.js" defer></script>
   <script src="aircraft.js" defer></script>
-  <script src="hero-flight.js" defer></script>
+  <script src="island-flight.js" defer></script>
 </head>
 <body id="top">
+  <div class="site-atmosphere" aria-hidden="true">
+    <div class="ambient-glow"></div>
+    <div class="ambient-grid"></div>
+    <svg class="ambient-orbits" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <defs>
+        <linearGradient id="ambient-signal" x1="0" y1="1" x2="1" y2="0">
+          <stop stop-color="#2e8eab" stop-opacity=".08"/><stop offset=".53" stop-color="#79e5f5" stop-opacity=".8"/><stop offset="1" stop-color="#727aff" stop-opacity=".18"/>
+        </linearGradient>
+      </defs>
+      <g class="ambient-lines" fill="none" stroke="url(#ambient-signal)">
+        <path d="M-180 868C180 876 376 754 575 568S1056 176 1597 189"/>
+        <path d="M-165 902C232 915 416 770 631 584S1114 222 1580 239"/>
+        <path d="M-170 933C264 938 464 789 676 607S1149 258 1597 280"/>
+        <path d="M-137 727C272 838 470 720 603 626S1023 319 1517 343"/>
+        <path d="M-92 175C220 102 555 97 766 237S1067 553 1511 579"/>
+      </g>
+      <g class="ambient-signals" fill="none" stroke="#98f1ff">
+        <path pathLength="1" d="M-180 868C180 876 376 754 575 568S1056 176 1597 189"/>
+        <path pathLength="1" d="M-170 933C264 938 464 789 676 607S1149 258 1597 280"/>
+        <path pathLength="1" d="M-92 175C220 102 555 97 766 237S1067 553 1511 579"/>
+      </g>
+    </svg>
+  </div>
   <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="symbols" aria-hidden="true">
     <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
     <symbol id="external" viewBox="0 0 24 24"><path d="M6 18 18 6M7 6h11v11"/></symbol>
@@ -43,6 +67,7 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-image" src="images/fjord-flight.webp" width="1672" height="941" alt="" fetchpriority="high">
       <div class="hero-atmosphere" aria-hidden="true"></div>
       <div class="wrap hero-inner">
         <div class="hero-copy">
@@ -54,8 +79,28 @@
             <a class="button text-button" href="#applications">Explore solutions <svg class="icon" aria-hidden="true"><use href="#down"/></svg></a>
           </div>
         </div>
-        <figure class="hero-flight" aria-labelledby="island-flight-title" aria-describedby="island-flight-description">
-          <div class="hero-flight-heading"><span id="island-flight-title"><i></i> Island-to-island delivery</span><span>Route 01 / Simulation</span></div>
+        <a class="hero-mission-link" href="#problem"><span>01 / Mission simulation</span><span>Watch an island crossing <svg class="icon" aria-hidden="true"><use href="#down"/></svg></span></a>
+      </div>
+    </section>
+
+    <div class="brief">
+      <dl class="wrap brief-grid">
+        <div><dt>01 / Commercial</dt><dd>Priority cargo</dd></div>
+        <div><dt>02 / Medical</dt><dd>Cold-chain delivery</dd></div>
+        <div><dt>03 / Flight</dt><dd>Autonomous design</dd></div>
+        <div><dt>04 / Stage</dt><dd><i></i> Prototype</dd></div>
+      </dl>
+    </div>
+
+    <section class="section wrap" id="problem" aria-labelledby="problem-title">
+      <div class="section-id"><span>01</span> The mission</div>
+      <div class="section-intro">
+        <h2 id="problem-title">Across the water.<br> <em>Direct to the island.</em></h2>
+        <p>When a ferry is the only connection, an urgent shipment moves on its schedule. This concept shows how a small cargo drone could connect two islands on demand.</p>
+      </div>
+      <div class="mission-flight-layout">
+        <figure class="island-flight" aria-labelledby="island-flight-title" aria-describedby="island-flight-description">
+          <div class="island-flight-heading"><span id="island-flight-title"><i></i> Island-to-island delivery</span><span>Route 01 / Simulation</span></div>
           <div class="island-stage">
             <svg class="island-map" viewBox="0 0 720 425" aria-hidden="true">
               <defs>
@@ -119,35 +164,23 @@
               <text x="45" y="394" class="island-map-label">A / DISPATCH</text>
               <text x="678" y="321" text-anchor="end" class="island-map-label">B / RECEIVE</text>
             </svg>
-            <canvas class="hero-aircraft" aria-hidden="true" hidden></canvas>
+            <canvas class="island-aircraft" aria-hidden="true" hidden></canvas>
           </div>
-          <figcaption class="hero-flight-footer" id="island-flight-description">
-            <span>Illustrative crossing</span>
+          <figcaption class="island-flight-footer" id="island-flight-description">
+            <span>Dispatch island to receiving island</span>
             <button type="button" class="flight-replay" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 1 1 2 8M3 4v6h6"/></svg>Replay flight</button>
           </figcaption>
         </figure>
+        <div class="mission-notes">
+          <p class="mission-notes-label">The route in three steps</p>
+          <ol>
+            <li><span>01</span><div><h3>Dispatch from the origin island</h3><p>The sender secures a priority parcel or medical case and confirms who will receive it.</p></div></li>
+            <li><span>02</span><div><h3>Cross the water directly</h3><p>A dedicated air route could help where ferry schedules or road detours make urgent deliveries unpredictable.</p></div></li>
+            <li><span>03</span><div><h3>Confirm the handoff</h3><p>The receiving team checks the shipment. A pilot would measure time to receipt and, for sensitive supplies, condition on arrival.</p></div></li>
+          </ol>
+          <a class="mission-next" href="#applications">Explore commercial and medical uses <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+        </div>
       </div>
-    </section>
-
-    <div class="brief">
-      <dl class="wrap brief-grid">
-        <div><dt>01 / Commercial</dt><dd>Priority cargo</dd></div>
-        <div><dt>02 / Medical</dt><dd>Cold-chain delivery</dd></div>
-        <div><dt>03 / Flight</dt><dd>Autonomous design</dd></div>
-        <div><dt>04 / Stage</dt><dd><i></i> Prototype</dd></div>
-      </dl>
-    </div>
-
-    <section class="section wrap" id="problem" aria-labelledby="problem-title">
-      <div class="section-id"><span>01</span> The mission</div>
-      <div class="section-intro">
-        <h2 id="problem-title">When the road<br> <em>runs out.</em></h2>
-        <p>A flooded road, a ferry schedule or a long detour can delay a shipment that matters. We’re developing direct air connections for small, time-sensitive loads across those gaps.</p>
-      </div>
-      <figure class="mission-landscape">
-        <img src="images/island-flight.webp" alt="Concept image of a delivery aircraft crossing a fjord" width="1200" height="800" loading="lazy">
-        <figcaption><span>Route concept</span> A direct flight between communities separated by water.</figcaption>
-      </figure>
     </section>
 
     <section class="section applications" id="applications" aria-labelledby="applications-title">

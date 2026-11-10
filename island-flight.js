@@ -1,6 +1,6 @@
 (() => {
   const stage = document.querySelector(".island-stage");
-  const canvas = stage.querySelector(".hero-aircraft");
+  const canvas = stage.querySelector(".island-aircraft");
   const context = canvas.getContext("2d");
   if (!context) return;
 
@@ -93,9 +93,9 @@
   document.addEventListener("akron-motion-change", syncMotion);
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
+      visible = entry.intersectionRatio >= 0.4;
       syncMotion();
-    }).observe(stage);
+    }, { threshold: 0.4 }).observe(stage);
   }
   if ("ResizeObserver" in window) new ResizeObserver(fit).observe(stage);
   else window.addEventListener("resize", fit);

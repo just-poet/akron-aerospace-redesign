@@ -265,13 +265,10 @@ figcaption span { color: var(--signal); margin-right: 10px; }
 }
 /* Commercial and medical share the flight system, with distinct payload accents. */
 .navigation { gap: clamp(15px, 2.6vw, 38px); }
-.mission-landscape {
   position: relative;
   border: 1px solid var(--edge);
   overflow: hidden;
 }
-.mission-landscape img { width: 100%; height: clamp(220px, 32vw, 410px); object-fit: cover; object-position: 50% 45%; }
-.mission-landscape figcaption { border-top: 1px solid var(--edge); }
 .solution-grid { --freight: #ffcc8a; }
 .freight { --loadout-accent: var(--freight); }
 .medical { --loadout-accent: var(--signal); }
@@ -379,35 +376,15 @@ figcaption span { color: var(--signal); margin-right: 10px; }
 }
 .aircraft-stage:not(.has-model) .aircraft-3d-tag { display: none; }
 
-/* The opening route shares the platform viewer's aircraft geometry. */
-.hero {
-  background:
-    radial-gradient(ellipse at 79% 50%, #142e42, transparent 57%),
-    linear-gradient(118deg, #050b14 12%, #0b1928 74%, #06101a);
-}
-.hero::before {
-  background: linear-gradient(0deg, #050b14bc, transparent 32%);
-}
-.hero-atmosphere {
-  background: radial-gradient(ellipse at 71% 47%, #25bde42a, transparent 47%);
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
-  gap: clamp(22px, 3.2vw, 50px);
-  min-height: clamp(570px, 46vw, 760px);
-  padding-block: clamp(45px, 5.9vw, 91px);
-}
-.hero h1 { font-size: clamp(46px, 6vw, 96px); }
-.hero-description { max-width: 415px; }
-.hero-flight {
+/* The mission route shares the platform viewer's aircraft geometry. */
+.island-flight {
   min-width: 0;
   position: relative;
   border: 1px solid #6ab4cd54;
   box-shadow: 0 24px 65px #02070d7d, inset 0 0 50px #40b9f315;
   background: #091928b5;
 }
-.hero-flight::after {
+.island-flight::after {
   position: absolute;
   content: "";
   inset: -1px -1px auto auto;
@@ -417,7 +394,7 @@ figcaption span { color: var(--signal); margin-right: 10px; }
   border-right: 2px solid var(--signal);
   pointer-events: none;
 }
-.hero-flight-heading, .hero-flight-footer {
+.island-flight-heading, .island-flight-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -429,14 +406,14 @@ figcaption span { color: var(--signal); margin-right: 10px; }
   text-transform: uppercase;
   letter-spacing: .09em;
 }
-.hero-flight-heading { min-height: 41px; border-bottom: 1px solid #45748650; }
-.hero-flight-heading > span:first-child { display: inline-flex; align-items: center; gap: 7px; color: var(--signal); }
-.hero-flight-heading i { box-shadow: 0 0 10px #70e9ff; }
-.hero-flight-footer { min-height: 47px; border-top: 1px solid #45748650; }
+.island-flight-heading { min-height: 41px; border-bottom: 1px solid #45748650; }
+.island-flight-heading > span:first-child { display: inline-flex; align-items: center; gap: 7px; color: var(--signal); }
+.island-flight-heading i { box-shadow: 0 0 10px #70e9ff; }
+.island-flight-footer { min-height: 47px; border-top: 1px solid #45748650; }
 .island-stage { position: relative; aspect-ratio: 720 / 425; }
-.island-map, .hero-aircraft { display: block; width: 100%; height: 100%; }
-.hero-aircraft { position: absolute; inset: 0; pointer-events: none; }
-.hero-aircraft[hidden], .flight-replay[hidden] { display: none; }
+.island-map, .island-aircraft { display: block; width: 100%; height: 100%; }
+.island-aircraft { position: absolute; inset: 0; pointer-events: none; }
+.island-aircraft[hidden], .flight-replay[hidden] { display: none; }
 .island-map-label { fill: #c1f8ff; font: 600 15px var(--mono); letter-spacing: 1.15px; }
 .flight-replay {
   display: inline-flex;
@@ -451,18 +428,144 @@ figcaption span { color: var(--signal); margin-right: 10px; }
   cursor: pointer;
 }
 .flight-replay:hover { border-color: var(--signal); }
-@media (max-width: 980px) {
-  .hero h1 { font-size: clamp(40px, 5.7vw, 65px); }
+@media (max-width: 420px) {
+  .island-flight-heading, .island-flight-footer { font-size: 9px; letter-spacing: .025em; }
+  .island-flight-heading { min-height: 34px; }
+  .island-flight-footer { min-height: 42px; }
 }
+/* The atmospheric field sits behind the whole page, with opaque content panels. */
+body { isolation: isolate; }
+.site-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: #050b14;
+}
+.ambient-glow, .ambient-grid, .ambient-orbits { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ambient-glow {
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  background:
+    radial-gradient(ellipse at 69% 34%, #0d4c6380, transparent 43%),
+    radial-gradient(ellipse at 18% 74%, #154668a8, transparent 40%),
+    radial-gradient(ellipse at 91% 80%, #372a6b65, transparent 40%);
+}
+.ambient-grid {
+  background:
+    linear-gradient(#78ccea13 1px, transparent 1px) center / 56px 56px,
+    linear-gradient(90deg, #78ccea13 1px, transparent 1px) center / 56px 56px;
+  mask-image: linear-gradient(135deg, transparent, #000 34%, #000 62%, transparent);
+}
+.ambient-orbits { opacity: .64; }
+.ambient-lines { stroke-width: 1.05; }
+.ambient-signals {
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: .042 .958;
+  stroke-dashoffset: .1;
+  opacity: .65;
+}
+.ambient-signals path:nth-child(2) { stroke-dashoffset: .37; }
+.ambient-signals path:nth-child(3) { stroke-dashoffset: .62; }
+.motion-ready:not(.motion-off) .ambient-glow { animation: atmosphere-flow 18s ease-in-out infinite alternate; }
+.motion-ready:not(.motion-off) .ambient-signals { animation: signal-flow 14s linear infinite; }
+@keyframes atmosphere-flow {
+  from { transform: translate(-5%, -3%) scale(1); opacity: .66; }
+  to { transform: translate(6%, 5%) scale(1.10); opacity: 1; }
+}
+@keyframes signal-flow { to { stroke-dashoffset: 1.1; } }
+.motion-ready:not(.motion-off) .ambient-signals path:nth-child(2) { animation: signal-flow-secondary 19s linear infinite; }
+.motion-ready:not(.motion-off) .ambient-signals path:nth-child(3) { animation: signal-flow-tertiary 16s linear infinite; }
+@keyframes signal-flow-secondary { to { stroke-dashoffset: 1.37; } }
+@keyframes signal-flow-tertiary { to { stroke-dashoffset: 1.62; } }
+
+.applications { background: #101b277a; }
+.impact { background: radial-gradient(ellipse at 80% 0%, #102b3d85, #0a15225e 70%); }
+.workflow {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 95px, #91d7ff0c 95px 96px),
+    radial-gradient(ellipse at 75% 15%, #15324975, #09131e80 68%);
+}
+
+.hero {
+  background: #0b1725;
+  border-bottom: 1px solid #213b50;
+}
+.hero-image {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 67% 50%;
+}
+.hero::before {
+  background:
+    linear-gradient(90deg, #050b14fb 0%, #050b14e2 23%, #050b1470 52%, transparent 78%),
+    linear-gradient(0deg, #050b14e5, #050b1415 34%, transparent 63%, #050b1440);
+}
+.hero-atmosphere {
+  background:
+    radial-gradient(ellipse at 73% 48%, #32caef30, transparent 47%),
+    linear-gradient(113deg, transparent 45%, #75cefb24 60%, transparent 74%);
+}
+.hero-inner {
+  display: grid;
+  min-height: clamp(575px, 46vw, 760px);
+  padding-block: 72px 96px;
+}
+.hero h1 { font-size: clamp(58px, 7.2vw, 112px); }
+.hero-mission-link {
+  display: grid;
+  gap: 4px;
+  position: absolute;
+  right: 0;
+  bottom: 29px;
+  border-left: 2px solid var(--signal);
+  padding: 9px 15px;
+  background: #06131fca;
+}
+.hero-mission-link span:first-child { color: var(--signal); font: 500 10px/1.4 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+.hero-mission-link span:last-child { display: flex; align-items: center; gap: 12px; color: var(--white); font-size: 13px; font-weight: 600; }
+.hero-mission-link:hover { background: #0d2939; }
+
+.mission-flight-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(18px, 3.3vw, 44px);
+  align-items: start;
+}
+.mission-notes {
+  background: #0a1623ed;
+  border: 1px solid #44758a66;
+  padding: clamp(16px, 2.4vw, 29px);
+}
+.mission-notes-label { color: var(--signal); font: 500 11px/1.4 var(--mono); letter-spacing: .11em; text-transform: uppercase; }
+.mission-notes ol { margin-block: 14px; border-top: 1px solid var(--edge); }
+.mission-notes li { display: grid; grid-template-columns: auto 1fr; gap: 11px; border-bottom: 1px solid var(--edge); padding-block: 13px; }
+.mission-notes li > span { color: var(--signal); font: 500 11px/1.4 var(--mono); padding-top: 3px; }
+.mission-notes h3 { font-size: clamp(16px, 1.7vw, 22px); letter-spacing: -.02em; }
+.mission-notes li p { color: var(--muted); font-size: 13px; margin-top: 3px; line-height: 1.55; }
+.mission-next { display: inline-flex; align-items: center; gap: 7px; color: var(--signal); font-size: 13px; font-weight: 600; }
+.mission-next:hover { text-decoration: underline; }
+
 @media (max-width: 780px) {
-  .hero-inner { grid-template-columns: minmax(0, 1fr); min-height: 0; gap: 24px; padding-block: 24px 37px; }
-  .hero-flight { grid-row: 1; }
-  .hero h1 { font-size: clamp(41px, 8.4vw, 68px); }
+  .hero-inner { align-items: end; min-height: 0; padding-block: 238px 92px; }
+  .hero-image { height: min(78%, 520px); object-position: 72% 32%; }
+  .hero::before { background: linear-gradient(0deg, #050b14 10%, #050b14f4 33%, #050b149c 57%, #050b1410 82%); }
+  .hero h1 { font-size: clamp(47px, 8.9vw, 69px); }
   .hero-description { margin-top: 16px; }
   .hero-actions { margin-top: 21px; }
+  .hero-mission-link { right: auto; left: 0; bottom: 22px; }
+  .mission-flight-layout { grid-template-columns: minmax(0, 1fr); }
+  .ambient-grid { background-size: 39px 39px; }
 }
 @media (max-width: 420px) {
-  .hero-flight-heading, .hero-flight-footer { font-size: 9px; letter-spacing: .025em; }
-  .hero-flight-heading { min-height: 34px; }
-  .hero-flight-footer { min-height: 42px; }
+  .hero-inner { padding-top: 205px; }
+  .hero h1 { font-size: clamp(38px, 10.5vw, 47px); }
+  .island-flight-footer > span { font-size: 8px; letter-spacing: .02em; }
 }
