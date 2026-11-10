@@ -42,23 +42,29 @@ function createLogisticsMesh(model) {
       break;
     }
 
-    case "relay": {
-      box(0, -0.82, 0, 1.58, 0.24, 1.30, slate, 0, 0.14);
-      box(0, -0.53, 0, 0.88, 0.41, 0.75, ivory, 0, 0.10);
-      box(0, -0.50, 0.385, 0.43, 0.12, 0.031, dark);
-      box(0, -0.50, 0.407, 0.21, 0.041, 0.024, mint);
-      cylinder(0, 0.02, 0, 0.115, 0.86, slate);
-      box(0, 0.44, 0.12, 0.23, 0.25, 0.42, dark);
-      const dish = (radius, depth) => Array.from({ length: 20 }, (_, index) => {
-        const angle = index * Math.PI / 10;
-        const vertical = Math.sin(angle) * radius;
-        return [Math.cos(angle) * radius, 0.51 + vertical * 0.87 + depth * 0.49,
-          0.13 - vertical * 0.49 + depth * 0.87];
-      });
-      loft([dish(0.16, 0.02), dish(0.53, 0.20), dish(0.61, 0.34)], ivory);
-      loft([dish(0.61, 0.34), dish(0.54, 0.34), dish(0.22, 0.23)], slate);
-      loft([dish(0.044, 0.24), dish(0.044, 0.58)], copper);
-      loft([dish(0.10, 0.56), dish(0.10, 0.62)], mint);
+    case "trolley": {
+      box(0, -0.46, 0, 1.48, 0.19, 2.24, slate, 0, 0.16);
+      box(0, -0.36, 0.09, 1.28, 0.08, 1.86, dark, 0, 0.10);
+      box(0, -0.07, 0.15, 1.04, 0.52, 1.18, copper, 0, 0.08);
+      for (const x of [-0.28, 0.28]) {
+        box(x, 0.20, 0.15, 0.09, 0.035, 1.17, slate);
+        box(x, -0.09, 0.75, 0.09, 0.52, 0.025, slate);
+      }
+      box(0, 0.03, 0.77, 0.24, 0.13, 0.025, ivory);
+      for (const side of [-1, 1]) {
+        box(side * 0.54, 0.10, -0.89, 0.09, 1.05, 0.09, slate);
+        box(side * 0.56, -0.44, 1.11, 0.23, 0.07, 0.035, mint);
+        for (const z of [-0.73, 0.76]) {
+          const wheelRing = (x, radius) => Array.from({ length: 16 }, (_, index) => {
+            const angle = index * Math.PI / 8;
+            return [x, -0.70 + Math.cos(angle) * radius, z + Math.sin(angle) * radius];
+          });
+          loft([wheelRing(side * 0.59, 0.22), wheelRing(side * 0.77, 0.22)], dark);
+          loft([wheelRing(side * 0.77, 0.11), wheelRing(side * 0.79, 0.11)], ivory);
+        }
+      }
+      box(0, 0.62, -0.89, 1.17, 0.12, 0.12, slate, 0, 0.035);
+      box(0, 0.63, -0.89, 0.65, 0.13, 0.13, mint, 0, 0.04);
       break;
     }
   }
