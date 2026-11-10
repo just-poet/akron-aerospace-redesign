@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050b14">
+  <meta name="description" content="Akron Aerospace is developing autonomous drone delivery for commercial and medical logistics, from urgent spare parts to temperature-sensitive medical supplies.">
+  <title>Akron Aerospace | Commercial &amp; Medical Drone Logistics</title>
+  <link rel="icon" type="image/svg+xml" href="images/akron.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="images/fjord-flight.webp">
+  <script src="script.js" defer></script>
+  <script src="aircraft.js" defer></script>
+</head>
+<body id="top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="symbols" aria-hidden="true">
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="external" viewBox="0 0 24 24"><path d="M6 18 18 6M7 6h11v11"/></symbol>
+    <symbol id="down" viewBox="0 0 24 24"><path d="M12 4v15m-6-6 6 6 6-6"/></symbol>
+    <symbol id="blood" viewBox="0 0 24 24"><path d="M12 2C10 6 5 10 5 15a7 7 0 0 0 14 0c0-5-5-9-7-13ZM9 16c.3 1.5 1.2 2.5 3 2.8"/></symbol>
+    <symbol id="lab" viewBox="0 0 24 24"><path d="M8 3h8m-6 0v7l-5 8a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-8V3M7.5 15h9"/></symbol>
+    <symbol id="wave" viewBox="0 0 24 24"><path d="M2 8c3 0 3-2 5-2s3 2 5 2 3-2 5-2 3 2 5 2M2 13c3 0 3-2 5-2s3 2 5 2 3-2 5-2 3 2 5 2M2 18c3 0 3-2 5-2s3 2 5 2 3-2 5-2 3 2 5 2"/></symbol>
+    <symbol id="city" viewBox="0 0 24 24"><path d="M2 21h20M4 21V10h5v11m0-7V3h6v18m0-10h5v10M11.8 7h.4m-.4 4h.4m-.4 4h.4"/></symbol>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav-shell">
+      <a class="brand" href="#top" aria-label="Akron Aerospace home"><img src="images/akron.svg" width="48" height="28" alt=""><span>AKRON<small>AEROSPACE</small></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true"></span></button>
+      <nav id="navigation" class="navigation" aria-label="Main">
+        <a href="#applications">Solutions</a>
+        <a href="#platform">Platform</a>
+        <a href="#impact">Impact</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#contact" class="header-contact">Contact <svg class="icon" aria-hidden="true"><use href="#external"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-image" src="images/fjord-flight.webp" width="1672" height="941" alt="" fetchpriority="high">
+      <div class="hero-atmosphere" aria-hidden="true"></div>
+      <div class="hero-instrument" aria-hidden="true">
+        <span class="instrument-orbit"></span>
+        <span class="instrument-sweep"></span>
+        <span class="instrument-center"></span>
+      </div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow hero-tag"><i></i> Autonomous drone logistics</p>
+          <h1 id="hero-title">Critical cargo.<br><em>Direct flight.</em></h1>
+          <p class="hero-description">Akron Aerospace is developing autonomous drones to move urgent commercial cargo and medical supplies between the places that need them.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#platform">Explore the platform <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="button text-button" href="#applications">Explore solutions <svg class="icon" aria-hidden="true"><use href="#down"/></svg></a>
+          </div>
+        </div>
+        <div class="hero-footer">
+          <div class="hero-caption"><span class="crosshair" aria-hidden="true"></span><span>FIG. 01 <b> / </b> FLIGHT CONCEPT</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="brief">
+      <dl class="wrap brief-grid">
+        <div><dt>01 / Commercial</dt><dd>Priority cargo</dd></div>
+        <div><dt>02 / Medical</dt><dd>Cold-chain delivery</dd></div>
+        <div><dt>03 / Flight</dt><dd>Autonomous design</dd></div>
+        <div><dt>04 / Stage</dt><dd><i></i> Prototype</dd></div>
+      </dl>
+    </div>
+
+    <section class="section wrap" id="problem" aria-labelledby="problem-title">
+      <div class="section-id"><span>01</span> The mission</div>
+      <div class="section-intro">
+        <h2 id="problem-title">When the road<br> <em>runs out.</em></h2>
+        <p>A flooded road, a ferry schedule or a long detour can delay a shipment that matters. We’re developing direct air connections for small, time-sensitive loads across those gaps.</p>
+      </div>
+      <figure class="mission-landscape">
+        <img src="images/island-flight.webp" alt="Concept image of a delivery aircraft crossing a fjord" width="1200" height="800" loading="lazy">
+        <figcaption><span>Route concept</span> A direct flight between communities separated by water.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section applications" id="applications" aria-labelledby="applications-title">
+      <div class="wrap">
+        <div class="section-id"><span>02</span> Solutions</div>
+        <div class="section-intro">
+          <h2 id="applications-title">Two missions.<br> <em>One flight platform.</em></h2>
+          <p>A shared aircraft concept with a different payload and handoff for each job. We’re starting with small, urgent shipments on routes where a direct connection could make a measurable difference.</p>
+        </div>
+        <div class="mission-grid solution-grid">
+          <article class="photo-card solution-card freight">
+            <div class="photo-frame"><img src="images/commercial-flight.webp" alt="Concept image of a cargo drone carrying a parcel pod near a logistics hub" width="1200" height="800" loading="lazy"><span>01 / Commercial concept</span></div>
+            <div class="photo-copy">
+              <h3>Commercial logistics</h3>
+              <p>Move a small, urgent shipment between facilities when a dedicated road trip or a long detour slows it down.</p>
+              <ul class="use-cases">
+                <li><strong>Spare parts</strong><span>Bring a critical component to a field team or industrial site.</span></li>
+                <li><strong>Hub transfers</strong><span>Connect distribution points for priority parcels.</span></li>
+                <li><strong>Hard-to-reach sites</strong><span>Carry essentials to locations separated by water or difficult terrain.</span></li>
+              </ul>
+              <a class="solution-link" data-loadout-link="cargo" href="#platform">Explore the cargo pod <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="photo-card solution-card medical">
+            <div class="photo-frame"><img src="images/hospital-handoff.webp" alt="Concept image of a clinician carrying a transport case near a drone on a hospital rooftop" width="1200" height="800" loading="lazy"><span>02 / Medical concept</span></div>
+            <div class="photo-copy">
+              <h3>Medical logistics</h3>
+              <p>Help hospitals, clinics and labs exchange time-sensitive supplies, with a handoff built around the receiving team.</p>
+              <ul class="use-cases">
+                <li><strong>Emergency blood</strong><span>Connect blood banks and hospitals for urgent requests.</span></li>
+                <li><strong>Lab specimens</strong><span>Shorten the trip from collection site to testing lab.</span></li>
+                <li><strong>Cold-chain supplies</strong><span>Design around the temperature limits of each shipment.</span></li>
+              </ul>
+              <a class="solution-link" data-loadout-link="medical" href="#platform">Explore the medical pod <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section workflow" id="how-it-works" aria-labelledby="workflow-title">
+      <div class="wrap">
+        <div class="section-id"><span>03</span> Flight sequence</div>
+        <div class="section-intro">
+          <h2 id="workflow-title">From dispatch<br> <em>to delivery.</em></h2>
+          <p>A proposed route connects two known sites with a clear handoff at each end. Teams agree on the payload, timing and backup plan before flight.</p>
+        </div>
+        <div class="route" aria-hidden="true">
+          <svg viewBox="0 0 1000 170" preserveAspectRatio="none">
+            <path class="route-grid" d="M0 35h1000M0 85h1000M0 135h1000M167 0v170M500 0v170M833 0v170"/>
+            <path class="route-terrain" d="M0 165 66 124l38 18 60-45 31 14 88-58 45 37 80-45 31 32 47-25 55 34 46-19 51 46 35-15 66 36 38-17 67 38 67-15 43 25M0 170l72-29 31 17 68-45 25 12 88-51 48 34 76-36 33 29 46-22 54 31 44-20 54 41 37-14 64 30 42-14 66 25 57-10 53 22"/>
+            <path id="flight-path" class="route-trail" d="M167 129C270 129 335 46 500 46S730 129 833 129"/>
+            <circle class="route-waypoint" cx="167" cy="129" r="7"/><circle class="route-waypoint" cx="500" cy="46" r="7"/><circle class="route-waypoint" cx="833" cy="129" r="7"/>
+            <g class="route-marker">
+              <circle r="13" class="route-halo"/>
+              <circle r="5"/>
+              <animateMotion dur="6s" repeatCount="indefinite" begin="indefinite" keyTimes="0;0.85;1" keyPoints="0;1;1" calcMode="linear"><mpath href="#flight-path"/></animateMotion>
+            </g>
+          </svg>
+          <span class="route-note">Flight path / simulation</span>
+          <span class="route-index">01 &rarr; 03</span>
+        </div>
+        <ol class="steps">
+          <li><span class="step-index">01</span><h3>Dispatch</h3><p>The sender secures the shipment and confirms the receiving site. The team checks route and weather conditions.</p></li>
+          <li><span class="step-index">02</span><h3>Transit</h3><p>The aircraft is designed to fly its planned route autonomously, from takeoff to landing.</p></li>
+          <li><span class="step-index">03</span><h3>Delivery</h3><p>The receiver checks the shipment and confirms receipt. Medical shipments also need a record of custody and condition.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section wrap" id="platform" aria-labelledby="platform-title">
+      <div class="section-id"><span>04</span> The platform</div>
+      <div class="section-intro">
+        <h2 id="platform-title">One airframe.<br> <em>Two payloads.</em></h2>
+        <p>Explore how the same aircraft concept could carry a secured cargo pod for commercial shipments or an insulated case for temperature-sensitive medical supplies.</p>
+      </div>
+      <div class="aircraft-lab">
+        <div class="aircraft-stage">
+          <img class="aircraft-fallback" src="images/fjord-flight.webp" width="1672" height="941" alt="Concept image of the Akron delivery aircraft" loading="lazy">
+          <canvas class="aircraft-canvas" aria-hidden="true" title="Drag to rotate the aircraft" hidden></canvas>
+          <span class="aircraft-label">AIRCRAFT CONCEPT <span class="aircraft-3d-tag">/ 3D</span></span>
+          <span class="aircraft-axis" aria-hidden="true">X ─ Y ─ Z</span>
+          <div class="aircraft-controls" hidden>
+            <button type="button" data-turn="-1" aria-label="Rotate aircraft left">↶</button>
+            <button type="button" data-turn="1" aria-label="Rotate aircraft right">↷</button>
+            <button type="button" data-turn="0">Reset view</button>
+          </div>
+        </div>
+        <div class="aircraft-panel">
+          <p class="section-id">Payload configuration</p>
+          <div class="loadout-selector" role="group" aria-label="Payload configuration" hidden>
+            <button type="button" data-loadout="cargo" aria-pressed="true">Commercial</button>
+            <button type="button" data-loadout="medical" aria-pressed="false">Medical</button>
+          </div>
+          <div class="loadout-copy" aria-live="polite">
+            <div data-loadout-copy="cargo">
+              <h3>Cargo pod</h3>
+              <p>A secured container concept for priority parcels, spare parts and other small shipments between facilities.</p>
+              <dl class="specs">
+                <div><dt>Priority</dt><dd>Secure load and fast handoff</dd></div>
+                <div><dt>To validate</dt><dd>Payload fit, delivery time and cost</dd></div>
+              </dl>
+            </div>
+            <div data-loadout-copy="medical">
+              <h3>Cold-chain pod</h3>
+              <p>An insulated medical case concept designed around the temperature requirements of blood and other sensitive supplies.</p>
+              <dl class="specs">
+                <div><dt>Priority</dt><dd>Temperature integrity and traceability</dd></div>
+                <div><dt>To validate</dt><dd>Condition on arrival and custody records</dd></div>
+              </dl>
+            </div>
+          </div>
+          <p class="aircraft-disclosure">Concept visualization · Prototype development</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section impact" id="impact" aria-labelledby="impact-title">
+      <div class="wrap">
+        <div class="section-id"><span>05</span> Our impact</div>
+        <div class="section-intro">
+          <h2 id="impact-title">What a better route<br> <em>could change.</em></h2>
+          <p>We want to make urgent delivery more dependable for people and businesses. Each proposed route should earn its place by improving on the delivery option already in use.</p>
+        </div>
+        <div class="impact-grid">
+          <article><span class="step-index">01 / Access</span><h3>Bring essential supplies closer</h3><p>A direct route could give remote clinics and island communities another way to receive urgent supplies when roads or ferries add hours.</p><p class="measure"><strong>Measure</strong> Request-to-receipt time and delivery completion.</p></article>
+          <article><span class="step-index">02 / Reliability</span><h3>Keep services running</h3><p>A missing spare part can stop a repair or shut down a site. A targeted flight could get the part to a field team sooner and reduce downtime.</p><p class="measure"><strong>Measure</strong> Delivery time, downtime and cost per shipment.</p></article>
+          <article><span class="step-index">03 / Stewardship</span><h3>Use energy where it counts</h3><p>A small electric aircraft could replace a dedicated vehicle trip on some routes. The benefit depends on the payload, charging source and ground trips it actually replaces.</p><p class="measure"><strong>Measure</strong> Energy, emissions and local noise against the existing route.</p></article>
+        </div>
+        <p class="research-note">Independent research helps frame what we would measure. <a href="https://doi.org/10.1016/S2214-109X(22)00048-1">Rwanda blood delivery study</a> <span aria-hidden="true">·</span> <a href="https://www.nature.com/articles/s41467-017-02411-5">Drone delivery life-cycle study</a></p>
+      </div>
+    </section>
+
+    <section class="section wrap" id="roadmap" aria-labelledby="roadmap-title">
+      <div class="section-id"><span>06</span> Why Akron</div>
+      <div class="section-intro">
+        <h2 id="roadmap-title">Prove one route.<br> <em>Then grow.</em></h2>
+        <p>Akron brings a medical-first design mindset to both missions. A shipment needs to arrive in the right condition, with a clear record of who sent and received it. The goal is to make that handoff repeatable before expanding to more routes.</p>
+      </div>
+      <ol class="steps roadmap">
+        <li><span class="step-index">01 / Current stage</span><h3>Develop the prototype</h3><p>Refine the aircraft and payload concepts around the needs of real senders and receivers.</p></li>
+        <li><span class="step-index">02 / Planned</span><h3>Validate the handoff</h3><p>Test payload security, condition on arrival and recovery procedures in controlled trials.</p></li>
+        <li><span class="step-index">03 / Proposed</span><h3>Pilot a defined route</h3><p>Work with a partner on a specific origin and destination, then compare reliability, cost and delivery time with their existing option.</p></li>
+      </ol>
+    </section>
+
+    <section class="wrap contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-banner">
+        <div><div class="section-id"><span>07</span> Contact</div><h2 id="contact-title">Help us find the next<br> <em>route worth flying.</em></h2></div>
+        <div class="contact-action"><p>If you move urgent cargo or medical supplies, tell us where it starts, where it needs to go, and what makes the trip difficult today.</p><a class="button primary" href="mailto:mail@akronaerospace.com">Email Akron Aerospace <svg class="icon" aria-hidden="true"><use href="#external"/></svg></a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top" aria-label="Akron Aerospace, back to top"><img src="images/akron.svg" width="48" height="28" alt=""><span>AKRON<small>AEROSPACE</small></span></a>
+      <div class="footer-info"><span>© 2026 Akron Aerospace</span><a href="https://www.linkedin.com/in/hajun-eom/">Hajun Eom, Founder</a></div>
+      <div class="footer-links"><a href="mailto:mail@akronaerospace.com">Email <svg class="icon" aria-hidden="true"><use href="#external"/></svg></a><a href="https://www.instagram.com/akronaerospace/">Instagram <svg class="icon" aria-hidden="true"><use href="#external"/></svg></a></div>
+    </div>
+  </footer>
+</body>
+</html>
